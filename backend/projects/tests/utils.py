@@ -57,7 +57,6 @@ def make_project(task: str, users: List[str], roles: List[str], collaborative_an
         ProjectType.SEQUENCE_LABELING: "SequenceLabelingProject",
         ProjectType.SEQ2SEQ: "Seq2seqProject",
        
-        ProjectType.IMAGE_CLASSIFICATION: "ImageClassificationProject",
         ProjectType.INTENT_DETECTION_AND_SLOT_FILLING: "IntentDetectionAndSlotFillingProject",
         ProjectType.BOUNDING_BOX: "BoundingBoxProject",
         ProjectType.SEGMENTATION: "SegmentationProject",

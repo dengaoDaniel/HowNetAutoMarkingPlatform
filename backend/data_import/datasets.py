@@ -209,7 +209,7 @@ def select_dataset(project: Project, task: str, file_format: Format) -> Type[Dat
         RELATION_EXTRACTION: RelationExtractionDataset,
         ProjectType.SEQ2SEQ: Seq2seqDataset,
         ProjectType.INTENT_DETECTION_AND_SLOT_FILLING: CategoryAndSpanDataset,
-        ProjectType.IMAGE_CLASSIFICATION: BinaryDataset,
+      
         ProjectType.IMAGE_CAPTIONING: BinaryDataset,
         ProjectType.BOUNDING_BOX: BinaryDataset,
         ProjectType.SEGMENTATION: BinaryDataset,

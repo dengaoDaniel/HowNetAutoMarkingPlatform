@@ -79,9 +79,6 @@ Options.register(ProjectType.SEQ2SEQ, JSONL, SEQ2SEQ_DIR / "example.jsonl")
 INTENT_DETECTION_DIR = EXAMPLE_DIR / "intent_detection"
 Options.register(ProjectType.INTENT_DETECTION_AND_SLOT_FILLING, JSONL, INTENT_DETECTION_DIR / "example.jsonl")
 
-# Image Classification
-IMAGE_CLASSIFICATION_DIR = EXAMPLE_DIR / "image_classification"
-Options.register(ProjectType.IMAGE_CLASSIFICATION, JSONL, IMAGE_CLASSIFICATION_DIR / "example.jsonl")
 
 BOUNDING_BOX_DIR = EXAMPLE_DIR / "bounding_box"
 Options.register(ProjectType.BOUNDING_BOX, JSONL, BOUNDING_BOX_DIR / "example.jsonl")

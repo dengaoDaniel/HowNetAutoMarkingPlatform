@@ -4,7 +4,7 @@ from rest_polymorphic.serializers import PolymorphicSerializer
 from .models import (
     BoundingBoxProject,
     ImageCaptioningProject,
-    ImageClassificationProject,
+   
     IntentDetectionAndSlotFillingProject,
     Member,
     Project,
@@ -115,10 +115,6 @@ class IntentDetectionAndSlotFillingProjectSerializer(ProjectSerializer):
         model = IntentDetectionAndSlotFillingProject
 
 
-
-class ImageClassificationProjectSerializer(ProjectSerializer):
-    class Meta(ProjectSerializer.Meta):
-        model = ImageClassificationProject
 
 
 class BoundingBoxProjectSerializer(ProjectSerializer):

@@ -40,8 +40,7 @@ def create_formatter(project: Project, file_format: str) -> List[Formatter]:
     mapper_intent_detection = {DATA: "text", Categories.column: "cats"}
     mapper_relation_extraction = {DATA: "text"}
 
-    # image tasks
-    mapper_image_classification = {DATA: "filename", Categories.column: "label"}
+  
     mapper_bounding_box = {DATA: "filename", BoundingBoxes.column: "bbox"}
     mapper_segmentation = {DATA: "filename", BoundingBoxes.column: "segmentation"}
     mapper_image_captioning = {DATA: "filename", Texts.column: "label"}
@@ -97,13 +96,7 @@ def create_formatter(project: Project, file_format: str) -> List[Formatter]:
                 RenameFormatter(**mapper_seq2seq),
             ],
         },
-        ProjectType.IMAGE_CLASSIFICATION: {
-            JSONL.name: [
-                ListedCategoryFormatter(Categories.column),
-                ListedCategoryFormatter(Comments.column),
-                RenameFormatter(**mapper_image_classification),
-            ],
-        },
+    
         
         ProjectType.INTENT_DETECTION_AND_SLOT_FILLING: {
             JSONL.name: [
@@ -144,7 +137,7 @@ def select_label_collection(project: Project) -> List[Type[Labels]]:
         ProjectType.DOCUMENT_CLASSIFICATION: [Categories],
         ProjectType.SEQUENCE_LABELING: [Spans, Relations] if use_relation else [Spans],
         ProjectType.SEQ2SEQ: [Texts],
-        ProjectType.IMAGE_CLASSIFICATION: [Categories],
+
        
         ProjectType.INTENT_DETECTION_AND_SLOT_FILLING: [Categories, Spans],
         ProjectType.BOUNDING_BOX: [BoundingBoxes],

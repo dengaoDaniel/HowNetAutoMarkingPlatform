@@ -17,7 +17,7 @@ class ProjectType(models.TextChoices):
     SEQUENCE_LABELING = "SequenceLabeling"
     SEQ2SEQ = "Seq2seq"
     INTENT_DETECTION_AND_SLOT_FILLING = "IntentDetectionAndSlotFilling"
-    IMAGE_CLASSIFICATION = "ImageClassification"
+    
     BOUNDING_BOX = "BoundingBox"
     SEGMENTATION = "Segmentation"
     IMAGE_CAPTIONING = "ImageCaptioning"
@@ -133,11 +133,6 @@ class IntentDetectionAndSlotFillingProject(Project):
         return True
 
 
-
-class ImageClassificationProject(Project):
-    @property
-    def is_text_project(self) -> bool:
-        return False
 
 
 class BoundingBoxProject(Project):

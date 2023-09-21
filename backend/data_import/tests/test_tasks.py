@@ -309,23 +309,4 @@ class TestImportIntentDetectionAndSlotFillingData(TestImportData):
         self.assert_examples(dataset)
 
 
-class TestImportImageClassificationData(TestImportData):
-    task = ProjectType.IMAGE_CLASSIFICATION
 
-    def test_example(self):
-        filename = "images/1500x500.jpeg"
-        file_format = "ImageFile"
-        self.import_dataset(filename, file_format, self.task)
-        self.assertEqual(Example.objects.count(), 1)
-
-
-@override_settings(ENABLE_FILE_TYPE_CHECK=True)
-class TestFileTypeChecking(TestImportData):
-    task = ProjectType.IMAGE_CLASSIFICATION
-
-    def test_example(self):
-        filename = "images/example.ico"
-        file_format = "ImageFile"
-        response = self.import_dataset(filename, file_format, self.task)
-        self.assertEqual(len(response["error"]), 1)
-        self.assertIn("unexpected", response["error"][0]["message"])
