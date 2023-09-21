@@ -92,6 +92,4 @@ Options.register(ProjectType.SEGMENTATION, JSONL, SEGMENTATION_DIR / "example.js
 IMAGE_CAPTIONING_DIR = EXAMPLE_DIR / "image_captioning"
 Options.register(ProjectType.IMAGE_CAPTIONING, JSONL, IMAGE_CAPTIONING_DIR / "example.jsonl")
 
-# Speech to Text
-SPEECH2TEXT_DIR = EXAMPLE_DIR / "speech_to_text"
-Options.register(ProjectType.SPEECH2TEXT, JSONL, SPEECH2TEXT_DIR / "example.jsonl")
+

@@ -2,7 +2,7 @@ from .catalog import (
     CSV,
     JSON,
     JSONL,
-    AudioFile,
+   
     CoNLL,
     Excel,
     FastText,
@@ -35,6 +35,6 @@ def create_parser(file_format: Format, **kwargs):
         Excel.name: ExcelParser,
         CoNLL.name: CoNLLParser,
         ImageFile.name: PlainParser,
-        AudioFile.name: PlainParser,
+       
     }
     return mapping[file_format.name](**kwargs)

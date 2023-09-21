@@ -46,8 +46,6 @@ def create_formatter(project: Project, file_format: str) -> List[Formatter]:
     mapper_segmentation = {DATA: "filename", BoundingBoxes.column: "segmentation"}
     mapper_image_captioning = {DATA: "filename", Texts.column: "label"}
 
-    # audio tasks
-    mapper_speech2text = {DATA: "filename", Texts.column: "label"}
 
     mapping: Dict[str, Dict[str, List[Formatter]]] = {
         ProjectType.DOCUMENT_CLASSIFICATION: {
@@ -106,13 +104,7 @@ def create_formatter(project: Project, file_format: str) -> List[Formatter]:
                 RenameFormatter(**mapper_image_classification),
             ],
         },
-        ProjectType.SPEECH2TEXT: {
-            JSONL.name: [
-                ListedCategoryFormatter(Texts.column),
-                ListedCategoryFormatter(Comments.column),
-                RenameFormatter(**mapper_speech2text),
-            ],
-        },
+        
         ProjectType.INTENT_DETECTION_AND_SLOT_FILLING: {
             JSONL.name: [
                 ListedCategoryFormatter(Categories.column),
@@ -153,7 +145,7 @@ def select_label_collection(project: Project) -> List[Type[Labels]]:
         ProjectType.SEQUENCE_LABELING: [Spans, Relations] if use_relation else [Spans],
         ProjectType.SEQ2SEQ: [Texts],
         ProjectType.IMAGE_CLASSIFICATION: [Categories],
-        ProjectType.SPEECH2TEXT: [Texts],
+       
         ProjectType.INTENT_DETECTION_AND_SLOT_FILLING: [Categories, Spans],
         ProjectType.BOUNDING_BOX: [BoundingBoxes],
         ProjectType.SEGMENTATION: [Segments],

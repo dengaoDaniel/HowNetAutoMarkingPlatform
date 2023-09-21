@@ -198,12 +198,6 @@ class ImageFile(Format):
         return mime in self.accept_types
 
 
-class AudioFile(Format):
-    name = "AudioFile"
-    accept_types = "audio/ogg, audio/aac, audio/mpeg, audio/wav"
-
-    def validate_mime(self, mime: str):
-        return mime in self.accept_types
 
 
 class ArgColumn(BaseModel):
@@ -448,13 +442,4 @@ for task_name in image_tasks:
         )
     )
 
-# Speech to Text
-Options.register(
-    Option(
-        display_name=AudioFile.name,
-        task_id=ProjectType.SPEECH2TEXT,
-        file_format=AudioFile,
-        arg=ArgNone,
-        file=SPEECH_TO_TEXT_DIR / "audio_files.txt",
-    )
-)
+

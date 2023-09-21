@@ -11,7 +11,6 @@ from .models import (
     SegmentationProject,
     Seq2seqProject,
     SequenceLabelingProject,
-    Speech2textProject,
     Tag,
     TextClassificationProject,
 )
@@ -115,10 +114,6 @@ class IntentDetectionAndSlotFillingProjectSerializer(ProjectSerializer):
     class Meta(ProjectSerializer.Meta):
         model = IntentDetectionAndSlotFillingProject
 
-
-class Speech2textProjectSerializer(ProjectSerializer):
-    class Meta(ProjectSerializer.Meta):
-        model = Speech2textProject
 
 
 class ImageClassificationProjectSerializer(ProjectSerializer):

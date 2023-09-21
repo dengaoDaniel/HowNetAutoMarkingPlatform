@@ -213,7 +213,7 @@ def select_dataset(project: Project, task: str, file_format: Format) -> Type[Dat
         ProjectType.IMAGE_CAPTIONING: BinaryDataset,
         ProjectType.BOUNDING_BOX: BinaryDataset,
         ProjectType.SEGMENTATION: BinaryDataset,
-        ProjectType.SPEECH2TEXT: BinaryDataset,
+       
     }
     if task not in mapping:
         task = project.project_type
