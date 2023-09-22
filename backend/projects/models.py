@@ -20,7 +20,7 @@ class ProjectType(models.TextChoices):
     
     BOUNDING_BOX = "BoundingBox"
     SEGMENTATION = "Segmentation"
-    IMAGE_CAPTIONING = "ImageCaptioning"
+    
 
 
 class Project(PolymorphicModel):
@@ -147,10 +147,6 @@ class SegmentationProject(Project):
         return False
 
 
-class ImageCaptioningProject(Project):
-    @property
-    def is_text_project(self) -> bool:
-        return False
 
 
 class Tag(models.Model):

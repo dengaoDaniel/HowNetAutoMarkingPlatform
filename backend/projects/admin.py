@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from .models import (
     BoundingBoxProject,
-    ImageCaptioningProject,
+   
     
     Member,
     Project,
@@ -49,6 +49,6 @@ admin.site.register(SequenceLabelingProject, ProjectAdmin)
 admin.site.register(Seq2seqProject, ProjectAdmin)
 admin.site.register(BoundingBoxProject, ProjectAdmin)
 admin.site.register(SegmentationProject, ProjectAdmin)
-admin.site.register(ImageCaptioningProject, ProjectAdmin)
+
 
 admin.site.register(Tag, TagAdmin)

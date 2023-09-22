@@ -427,7 +427,7 @@ Options.register(
 # Image tasks
 image_tasks = [
     
-    ProjectType.IMAGE_CAPTIONING,
+   
     ProjectType.BOUNDING_BOX,
     ProjectType.SEGMENTATION,
 ]

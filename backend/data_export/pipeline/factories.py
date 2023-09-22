@@ -43,7 +43,6 @@ def create_formatter(project: Project, file_format: str) -> List[Formatter]:
   
     mapper_bounding_box = {DATA: "filename", BoundingBoxes.column: "bbox"}
     mapper_segmentation = {DATA: "filename", BoundingBoxes.column: "segmentation"}
-    mapper_image_captioning = {DATA: "filename", Texts.column: "label"}
 
 
     mapping: Dict[str, Dict[str, List[Formatter]]] = {
@@ -120,13 +119,7 @@ def create_formatter(project: Project, file_format: str) -> List[Formatter]:
                 RenameFormatter(**mapper_segmentation),
             ]
         },
-        ProjectType.IMAGE_CAPTIONING: {
-            JSONL.name: [
-                ListedCategoryFormatter(Texts.column),
-                ListedCategoryFormatter(Comments.column),
-                RenameFormatter(**mapper_image_captioning),
-            ]
-        },
+      
     }
     return mapping[project.project_type][file_format]
 
@@ -142,7 +135,7 @@ def select_label_collection(project: Project) -> List[Type[Labels]]:
         ProjectType.INTENT_DETECTION_AND_SLOT_FILLING: [Categories, Spans],
         ProjectType.BOUNDING_BOX: [BoundingBoxes],
         ProjectType.SEGMENTATION: [Segments],
-        ProjectType.IMAGE_CAPTIONING: [Texts],
+        
     }
     return mapping[project.project_type]
 

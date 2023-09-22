@@ -86,7 +86,6 @@ Options.register(ProjectType.BOUNDING_BOX, JSONL, BOUNDING_BOX_DIR / "example.js
 SEGMENTATION_DIR = EXAMPLE_DIR / "segmentation"
 Options.register(ProjectType.SEGMENTATION, JSONL, SEGMENTATION_DIR / "example.jsonl")
 
-IMAGE_CAPTIONING_DIR = EXAMPLE_DIR / "image_captioning"
-Options.register(ProjectType.IMAGE_CAPTIONING, JSONL, IMAGE_CAPTIONING_DIR / "example.jsonl")
+
 
 

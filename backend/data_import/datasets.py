@@ -210,7 +210,7 @@ def select_dataset(project: Project, task: str, file_format: Format) -> Type[Dat
         ProjectType.SEQ2SEQ: Seq2seqDataset,
         ProjectType.INTENT_DETECTION_AND_SLOT_FILLING: CategoryAndSpanDataset,
       
-        ProjectType.IMAGE_CAPTIONING: BinaryDataset,
+        
         ProjectType.BOUNDING_BOX: BinaryDataset,
         ProjectType.SEGMENTATION: BinaryDataset,
        
