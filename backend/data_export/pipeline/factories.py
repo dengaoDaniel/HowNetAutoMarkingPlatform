@@ -41,7 +41,7 @@ def create_formatter(project: Project, file_format: str) -> List[Formatter]:
     mapper_relation_extraction = {DATA: "text"}
 
   
-    mapper_bounding_box = {DATA: "filename", BoundingBoxes.column: "bbox"}
+    
     mapper_segmentation = {DATA: "filename", BoundingBoxes.column: "segmentation"}
 
 
@@ -105,13 +105,7 @@ def create_formatter(project: Project, file_format: str) -> List[Formatter]:
                 RenameFormatter(**mapper_intent_detection),
             ]
         },
-        ProjectType.BOUNDING_BOX: {
-            JSONL.name: [
-                DictFormatter(BoundingBoxes.column),
-                DictFormatter(Comments.column),
-                RenameFormatter(**mapper_bounding_box),
-            ]
-        },
+       
         ProjectType.SEGMENTATION: {
             JSONL.name: [
                 DictFormatter(Segments.column),
@@ -133,7 +127,7 @@ def select_label_collection(project: Project) -> List[Type[Labels]]:
 
        
         ProjectType.INTENT_DETECTION_AND_SLOT_FILLING: [Categories, Spans],
-        ProjectType.BOUNDING_BOX: [BoundingBoxes],
+      
         ProjectType.SEGMENTATION: [Segments],
         
     }

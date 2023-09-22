@@ -65,14 +65,6 @@ class TestSpanList(TestLabelList, CRUDMixin):
         make_annotation(cls.task, doc=doc, user=member, start_offset=0, end_offset=1)
 
 
-class TestBBoxList(TestLabelList, CRUDMixin):
-    model = BoundingBox
-    task = ProjectType.BOUNDING_BOX
-    view_name = "bbox_list"
-
-    @classmethod
-    def make_annotation(cls, doc, member):
-        mommy.make("BoundingBox", example=doc, user=member, x=0, y=0, width=0, height=0)
 
 
 class TestSegmentationList(TestLabelList, CRUDMixin):
@@ -201,18 +193,6 @@ class TestTextLabelCreation(TestDataLabeling, CRUDMixin):
         return {"text": "example"}
 
 
-class TestBoundingBoxCreation(TestDataLabeling, CRUDMixin):
-    task = ProjectType.BOUNDING_BOX
-    view_name = "bbox_list"
-
-    def create_data(self):
-        label = mommy.make("CategoryType", project=self.project.item)
-        return {"x": 0, "y": 0, "width": 0, "height": 0, "label": label.id}
-
-    def test_allows_project_member_to_annotate(self):
-        for member in self.project.members:
-            self.data["uuid"] = str(uuid.uuid4())
-            self.assert_create(member, status.HTTP_201_CREATED)
 
 
 class TestSegmentationCreation(TestDataLabeling, CRUDMixin):
@@ -303,13 +283,6 @@ class TestTextDetail(TestLabelDetail, CRUDMixin):
     def create_annotation_data(self, doc):
         return make_annotation(task=self.task, doc=doc, user=self.project.admin)
 
-
-class TestBBoxDetail(TestLabelDetail, CRUDMixin):
-    task = ProjectType.BOUNDING_BOX
-    view_name = "bbox_detail"
-
-    def create_annotation_data(self, doc):
-        return mommy.make("BoundingBox", example=doc, user=self.project.admin, x=0, y=0, width=0, height=0)
 
 
 class TestSegmentationDetail(TestLabelDetail, CRUDMixin):

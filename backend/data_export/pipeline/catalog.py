@@ -80,8 +80,6 @@ INTENT_DETECTION_DIR = EXAMPLE_DIR / "intent_detection"
 Options.register(ProjectType.INTENT_DETECTION_AND_SLOT_FILLING, JSONL, INTENT_DETECTION_DIR / "example.jsonl")
 
 
-BOUNDING_BOX_DIR = EXAMPLE_DIR / "bounding_box"
-Options.register(ProjectType.BOUNDING_BOX, JSONL, BOUNDING_BOX_DIR / "example.jsonl")
 
 SEGMENTATION_DIR = EXAMPLE_DIR / "segmentation"
 Options.register(ProjectType.SEGMENTATION, JSONL, SEGMENTATION_DIR / "example.jsonl")

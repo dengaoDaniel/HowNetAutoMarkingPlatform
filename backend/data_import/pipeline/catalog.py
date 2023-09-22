@@ -428,7 +428,6 @@ Options.register(
 image_tasks = [
     
    
-    ProjectType.BOUNDING_BOX,
     ProjectType.SEGMENTATION,
 ]
 for task_name in image_tasks:

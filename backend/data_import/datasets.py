@@ -211,7 +211,7 @@ def select_dataset(project: Project, task: str, file_format: Format) -> Type[Dat
         ProjectType.INTENT_DETECTION_AND_SLOT_FILLING: CategoryAndSpanDataset,
       
         
-        ProjectType.BOUNDING_BOX: BinaryDataset,
+        
         ProjectType.SEGMENTATION: BinaryDataset,
        
     }

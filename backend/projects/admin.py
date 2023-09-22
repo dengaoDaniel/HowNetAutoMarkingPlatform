@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from .models import (
-    BoundingBoxProject,
+   
    
     
     Member,
@@ -47,7 +47,7 @@ admin.site.register(Project, ProjectAdmin)
 admin.site.register(TextClassificationProject, ProjectAdmin)
 admin.site.register(SequenceLabelingProject, ProjectAdmin)
 admin.site.register(Seq2seqProject, ProjectAdmin)
-admin.site.register(BoundingBoxProject, ProjectAdmin)
+
 admin.site.register(SegmentationProject, ProjectAdmin)
 
 

@@ -58,7 +58,7 @@ def make_project(task: str, users: List[str], roles: List[str], collaborative_an
         ProjectType.SEQ2SEQ: "Seq2seqProject",
        
         ProjectType.INTENT_DETECTION_AND_SLOT_FILLING: "IntentDetectionAndSlotFillingProject",
-        ProjectType.BOUNDING_BOX: "BoundingBoxProject",
+        
         ProjectType.SEGMENTATION: "SegmentationProject",
         
     }.get(task, "Project")

@@ -2,7 +2,7 @@ from rest_framework import serializers
 from rest_polymorphic.serializers import PolymorphicSerializer
 
 from .models import (
-    BoundingBoxProject,
+    
     
    
     IntentDetectionAndSlotFillingProject,
@@ -116,10 +116,6 @@ class IntentDetectionAndSlotFillingProjectSerializer(ProjectSerializer):
 
 
 
-
-class BoundingBoxProjectSerializer(ProjectSerializer):
-    class Meta(ProjectSerializer.Meta):
-        model = BoundingBoxProject
 
 
 class SegmentationProjectSerializer(ProjectSerializer):

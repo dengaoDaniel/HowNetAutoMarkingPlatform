@@ -18,7 +18,7 @@ class ProjectType(models.TextChoices):
     SEQ2SEQ = "Seq2seq"
     INTENT_DETECTION_AND_SLOT_FILLING = "IntentDetectionAndSlotFilling"
     
-    BOUNDING_BOX = "BoundingBox"
+    
     SEGMENTATION = "Segmentation"
     
 
@@ -134,11 +134,6 @@ class IntentDetectionAndSlotFillingProject(Project):
 
 
 
-
-class BoundingBoxProject(Project):
-    @property
-    def is_text_project(self) -> bool:
-        return False
 
 
 class SegmentationProject(Project):
