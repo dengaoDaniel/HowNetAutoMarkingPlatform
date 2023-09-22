@@ -8,7 +8,7 @@ from .models import (
     IntentDetectionAndSlotFillingProject,
     Member,
     Project,
-    SegmentationProject,
+ 
     Seq2seqProject,
     SequenceLabelingProject,
     Tag,
@@ -117,10 +117,6 @@ class IntentDetectionAndSlotFillingProjectSerializer(ProjectSerializer):
 
 
 
-
-class SegmentationProjectSerializer(ProjectSerializer):
-    class Meta(ProjectSerializer.Meta):
-        model = SegmentationProject
 
 
 

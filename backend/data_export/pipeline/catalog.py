@@ -81,8 +81,6 @@ Options.register(ProjectType.INTENT_DETECTION_AND_SLOT_FILLING, JSONL, INTENT_DE
 
 
 
-SEGMENTATION_DIR = EXAMPLE_DIR / "segmentation"
-Options.register(ProjectType.SEGMENTATION, JSONL, SEGMENTATION_DIR / "example.jsonl")
 
 
 

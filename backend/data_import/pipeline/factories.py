@@ -7,7 +7,7 @@ from .catalog import (
     Excel,
     FastText,
     Format,
-    ImageFile,
+
     TextFile,
     TextLine,
 )
@@ -34,7 +34,7 @@ def create_parser(file_format: Format, **kwargs):
         FastText.name: FastTextParser,
         Excel.name: ExcelParser,
         CoNLL.name: CoNLLParser,
-        ImageFile.name: PlainParser,
+      
        
     }
     return mapping[file_format.name](**kwargs)

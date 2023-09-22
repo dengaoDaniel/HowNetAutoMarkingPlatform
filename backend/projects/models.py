@@ -19,7 +19,6 @@ class ProjectType(models.TextChoices):
     INTENT_DETECTION_AND_SLOT_FILLING = "IntentDetectionAndSlotFilling"
     
     
-    SEGMENTATION = "Segmentation"
     
 
 
@@ -133,13 +132,6 @@ class IntentDetectionAndSlotFillingProject(Project):
         return True
 
 
-
-
-
-class SegmentationProject(Project):
-    @property
-    def is_text_project(self) -> bool:
-        return False
 
 
 

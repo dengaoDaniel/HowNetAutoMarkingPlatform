@@ -8,7 +8,7 @@ from .utils import make_annotation
 from api.tests.utils import CRUDMixin
 from examples.tests.utils import make_doc
 from label_types.tests.utils import make_label
-from labels.models import BoundingBox, Category, Segmentation, Span, TextLabel
+from labels.models import Category, Span, TextLabel
 from projects.models import ProjectType
 from projects.tests.utils import prepare_project
 from users.tests.utils import make_user
@@ -66,15 +66,6 @@ class TestSpanList(TestLabelList, CRUDMixin):
 
 
 
-
-class TestSegmentationList(TestLabelList, CRUDMixin):
-    model = Segmentation
-    task = ProjectType.SEGMENTATION
-    view_name = "segmentation_list"
-
-    @classmethod
-    def make_annotation(cls, doc, member):
-        mommy.make("Segmentation", example=doc, user=member, points=[0, 1])
 
 
 class TestTextList(TestLabelList, CRUDMixin):
@@ -195,19 +186,6 @@ class TestTextLabelCreation(TestDataLabeling, CRUDMixin):
 
 
 
-class TestSegmentationCreation(TestDataLabeling, CRUDMixin):
-    task = ProjectType.SEGMENTATION
-    view_name = "segmentation_list"
-
-    def create_data(self):
-        label = mommy.make("CategoryType", project=self.project.item)
-        return {"points": [1, 2], "label": label.id}
-
-    def test_allows_project_member_to_annotate(self):
-        for member in self.project.members:
-            self.data["uuid"] = str(uuid.uuid4())
-            self.assert_create(member, status.HTTP_201_CREATED)
-
 
 class TestLabelDetail:
     task = ProjectType.SEQUENCE_LABELING
@@ -284,13 +262,6 @@ class TestTextDetail(TestLabelDetail, CRUDMixin):
         return make_annotation(task=self.task, doc=doc, user=self.project.admin)
 
 
-
-class TestSegmentationDetail(TestLabelDetail, CRUDMixin):
-    task = ProjectType.SEGMENTATION
-    view_name = "segmentation_detail"
-
-    def create_annotation_data(self, doc):
-        return mommy.make("Segmentation", example=doc, user=self.project.admin, points=[1, 2])
 
 
 class TestSharedLabelDetail:

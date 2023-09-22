@@ -72,14 +72,7 @@ class ExampleMaker:
         return self._errors
 
 
-class BinaryExampleMaker(ExampleMaker):
-    def make(self, df: pd.DataFrame) -> List[Example]:
-        examples = []
-        for row in df.to_dict(orient="records"):
-            data = self.data_class.parse(**row)
-            example = data.create(self.project)
-            examples.append(example)
-        return examples
+
 
 
 class LabelMaker:

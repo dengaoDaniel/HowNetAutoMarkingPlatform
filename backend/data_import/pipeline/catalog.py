@@ -17,8 +17,8 @@ SEQUENCE_LABELING_DIR = EXAMPLE_DIR / "sequence_labeling"
 RELATION_EXTRACTION_DIR = EXAMPLE_DIR / "relation_extraction"
 SEQ2SEQ_DIR = EXAMPLE_DIR / "sequence_to_sequence"
 INTENT_DETECTION_DIR = EXAMPLE_DIR / "intent_detection"
-IMAGE_CLASSIFICATION_DIR = EXAMPLE_DIR / "image_classification"
-SPEECH_TO_TEXT_DIR = EXAMPLE_DIR / "speech_to_text"
+
+
 
 # Define the task identifiers
 RELATION_EXTRACTION = "RelationExtraction"
@@ -190,12 +190,6 @@ class CoNLL(Format):
     accept_types = "text/*"
 
 
-class ImageFile(Format):
-    name = "ImageFile"
-    accept_types = "image/png, image/jpeg, image/bmp, image/gif"
-
-    def validate_mime(self, mime: str):
-        return mime in self.accept_types
 
 
 
@@ -424,21 +418,5 @@ Options.register(
     )
 )
 
-# Image tasks
-image_tasks = [
-    
-   
-    ProjectType.SEGMENTATION,
-]
-for task_name in image_tasks:
-    Options.register(
-        Option(
-            display_name=ImageFile.name,
-            task_id=task_name,
-            file_format=ImageFile,
-            arg=ArgNone,
-            file=IMAGE_CLASSIFICATION_DIR / "image_files.txt",
-        )
-    )
 
 

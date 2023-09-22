@@ -14,7 +14,7 @@ from .formatters import (
     RenameFormatter,
     TupledSpanFormatter,
 )
-from .labels import BoundingBoxes, Categories, Labels, Relations, Segments, Spans, Texts
+from .labels import Categories, Labels, Relations, Spans, Texts
 from data_export.models import DATA, ExportedExample
 from projects.models import Project, ProjectType
 
@@ -42,7 +42,6 @@ def create_formatter(project: Project, file_format: str) -> List[Formatter]:
 
   
     
-    mapper_segmentation = {DATA: "filename", BoundingBoxes.column: "segmentation"}
 
 
     mapping: Dict[str, Dict[str, List[Formatter]]] = {
@@ -106,13 +105,7 @@ def create_formatter(project: Project, file_format: str) -> List[Formatter]:
             ]
         },
        
-        ProjectType.SEGMENTATION: {
-            JSONL.name: [
-                DictFormatter(Segments.column),
-                DictFormatter(Comments.column),
-                RenameFormatter(**mapper_segmentation),
-            ]
-        },
+        
       
     }
     return mapping[project.project_type][file_format]
@@ -128,7 +121,6 @@ def select_label_collection(project: Project) -> List[Type[Labels]]:
        
         ProjectType.INTENT_DETECTION_AND_SLOT_FILLING: [Categories, Spans],
       
-        ProjectType.SEGMENTATION: [Segments],
         
     }
     return mapping[project.project_type]

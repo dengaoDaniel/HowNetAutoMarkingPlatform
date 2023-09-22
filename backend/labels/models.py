@@ -5,11 +5,11 @@ from django.core.exceptions import ValidationError
 from django.db import models
 
 from .managers import (
-    BoundingBoxManager,
+
     CategoryManager,
     LabelManager,
     RelationManager,
-    SegmentationManager,
+  
     SpanManager,
     TextLabelManager,
 )
@@ -130,26 +130,4 @@ class Relation(Label):
         return super().clean()
 
 
-class BoundingBox(Label):
-    objects = BoundingBoxManager()
-    x = models.FloatField()
-    y = models.FloatField()
-    width = models.FloatField()
-    height = models.FloatField()
-    label = models.ForeignKey(to=CategoryType, on_delete=models.CASCADE)
-    example = models.ForeignKey(to=Example, on_delete=models.CASCADE, related_name="bboxes")
 
-    class Meta:
-        constraints = [
-            models.CheckConstraint(check=models.Q(x__gte=0), name="x >= 0"),
-            models.CheckConstraint(check=models.Q(y__gte=0), name="y >= 0"),
-            models.CheckConstraint(check=models.Q(width__gte=0), name="width >= 0"),
-            models.CheckConstraint(check=models.Q(height__gte=0), name="height >= 0"),
-        ]
-
-
-class Segmentation(Label):
-    objects = SegmentationManager()
-    points = models.JSONField(default=list)
-    label = models.ForeignKey(to=CategoryType, on_delete=models.CASCADE)
-    example = models.ForeignKey(to=Example, on_delete=models.CASCADE, related_name="segmentations")

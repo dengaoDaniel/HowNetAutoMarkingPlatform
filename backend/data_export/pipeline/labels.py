@@ -8,12 +8,12 @@ from typing import Dict, List, Tuple
 from django.db.models import QuerySet
 
 from data_export.models import (
-    ExportedBoundingBox,
+    
     ExportedCategory,
     ExportedExample,
     ExportedLabel,
     ExportedRelation,
-    ExportedSegmentation,
+  
     ExportedSpan,
     ExportedText,
 )
@@ -60,13 +60,4 @@ class Texts(Labels):
     fields = ("example",)
 
 
-class BoundingBoxes(Labels):
-    label_class = ExportedBoundingBox
-    column = "labels"
-    fields = ("example", "label")
 
-
-class Segments(Labels):
-    label_class = ExportedSegmentation
-    column = "labels"
-    fields = ("example", "label")

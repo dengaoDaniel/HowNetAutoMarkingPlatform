@@ -48,14 +48,3 @@ class TextData(BaseData):
             meta=self.meta,
         )
 
-
-class BinaryData(BaseData):
-    def create(self, project: Project) -> Example:
-        return Example(
-            uuid=self.uuid,
-            project=project,
-            filename=self.filename,
-            upload_name=self.upload_name,
-            text=None,
-            meta=self.meta,
-        )

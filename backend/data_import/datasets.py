@@ -5,14 +5,14 @@ from django.contrib.auth.models import User
 
 from .models import DummyLabelType
 from .pipeline.catalog import RELATION_EXTRACTION, Format
-from .pipeline.data import BaseData, BinaryData, TextData
+from .pipeline.data import BaseData, TextData
 from .pipeline.examples import Examples
 from .pipeline.exceptions import FileParseException
 from .pipeline.factories import create_parser
 from .pipeline.label import CategoryLabel, Label, RelationLabel, SpanLabel, TextLabel
 from .pipeline.label_types import LabelTypes
 from .pipeline.labels import Categories, Labels, Relations, Spans, Texts
-from .pipeline.makers import BinaryExampleMaker, ExampleMaker, LabelMaker
+from .pipeline.makers import ExampleMaker, LabelMaker
 from .pipeline.readers import (
     DEFAULT_LABEL_COLUMN,
     DEFAULT_TEXT_COLUMN,
@@ -90,19 +90,6 @@ class DatasetWithSingleLabelType(Dataset):
         return self.reader.errors + self.example_maker.errors + self.label_maker.errors
 
 
-class BinaryDataset(Dataset):
-    def __init__(self, reader: Reader, project: Project, **kwargs):
-        super().__init__(reader, project, **kwargs)
-        self.example_maker = BinaryExampleMaker(project=project, data_class=BinaryData)
-
-    def save(self, user: User, batch_size: int = 1000):
-        for records in self.reader.batch(batch_size):
-            examples = Examples(self.example_maker.make(records))
-            examples.save()
-
-    @property
-    def errors(self) -> List[FileParseException]:
-        return self.reader.errors + self.example_maker.errors
 
 
 class TextClassificationDataset(DatasetWithSingleLabelType):
@@ -212,8 +199,7 @@ def select_dataset(project: Project, task: str, file_format: Format) -> Type[Dat
       
         
         
-        ProjectType.SEGMENTATION: BinaryDataset,
-       
+     
     }
     if task not in mapping:
         task = project.project_type

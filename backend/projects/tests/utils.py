@@ -59,7 +59,6 @@ def make_project(task: str, users: List[str], roles: List[str], collaborative_an
        
         ProjectType.INTENT_DETECTION_AND_SLOT_FILLING: "IntentDetectionAndSlotFillingProject",
         
-        ProjectType.SEGMENTATION: "SegmentationProject",
         
     }.get(task, "Project")
     project = mommy.make(
