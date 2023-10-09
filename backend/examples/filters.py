@@ -46,8 +46,7 @@ class ExampleFilter(FilterSet):
             Q(categories__label__text=label)
             | Q(spans__label__text=label)
             | Q(relations__type__text=label)
-            | Q(bboxes__label__text=label)
-            | Q(segmentations__label__text=label)
+
         )
         return queryset
 
