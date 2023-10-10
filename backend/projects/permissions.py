@@ -50,5 +50,13 @@ class IsAnnotationApprover(RolePermission):
     role_name = settings.ROLE_ANNOTATION_APPROVER
 
 
-IsProjectMember = IsAnnotator | IsAnnotationApprover | IsProjectAdmin  # type: ignore
-IsProjectStaffAndReadOnly = IsAnnotatorAndReadOnly | IsAnnotationApproverAndReadOnly  # type: ignore
+class IsHowNetRoleDesignerAndReadOnly(RolePermission):
+    role_name = settings.ROLE_HOWNET_RULE_DESIGNER
+
+
+class IsHowNetRoleDesigner(RolePermission):
+    unsafe_methods_check = False
+    role_name = settings.ROLE_HOWNET_RULE_DESIGNER
+
+IsProjectMember = IsAnnotator | IsAnnotationApprover | IsProjectAdmin | IsHowNetRoleDesigner # type: ignore
+IsProjectStaffAndReadOnly = IsAnnotatorAndReadOnly | IsAnnotationApproverAndReadOnly | IsHowNetRoleDesignerAndReadOnly # type: ignore
