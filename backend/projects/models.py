@@ -18,7 +18,10 @@ class ProjectType(models.TextChoices):
     SEQ2SEQ = "Seq2seq"
     INTENT_DETECTION_AND_SLOT_FILLING = "IntentDetectionAndSlotFilling"
     
-    
+
+class ProjectState(models.TextChoices):
+    HOWNET_RULE_DEVELOPING = "HownetRuleDeveloping"
+    HOWNET_RULE_COMMITTED = "HownetRuleCommitted"    
     
 
 
@@ -38,6 +41,8 @@ class Project(PolymorphicModel):
     collaborative_annotation = models.BooleanField(default=False)
     single_class_classification = models.BooleanField(default=False)
     allow_member_to_create_label_type = models.BooleanField(default=False)
+    #项目状态：规则设计中、规则已发布
+    project_state = models.CharField(max_length=30, choices=ProjectState.choices)
 
     def add_admin(self):
         admin_role = Role.objects.get(name=settings.ROLE_PROJECT_ADMIN)
@@ -87,6 +92,14 @@ class Project(PolymorphicModel):
                 items.append(item)
             queryset.model.objects.bulk_create(items)
 
+        """
+        bulk_clone所有外键关联Project的其他Model的数据，包括Member（role_mappings），Tag（tags），Example（examples），
+        LabelType的三个子类：CategoryType，SpanType，RelationType
+        还有AutoLabelingConfig和Assignment也关联了Project，为什么不对这两个也进行bulk_clone?
+        
+        如果ModelA通过外键关联了ModelB，则ModelB中也会有指向ModelA的字段，字段名为ModelA声明foreignKey的时候传入的related_name属性，
+        如果未设置related_name，则名字为ModelA_set
+        """
         bulk_clone(self.role_mappings.all())
         bulk_clone(self.tags.all())
 

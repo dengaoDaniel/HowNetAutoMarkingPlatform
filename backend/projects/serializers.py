@@ -73,6 +73,7 @@ class ProjectSerializer(serializers.ModelSerializer):
             "allow_member_to_create_label_type",
             "is_text_project",
             "tags",
+            "project_state"
         ]
         read_only_fields = (
             "created_at",
