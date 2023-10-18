@@ -83,11 +83,12 @@ def make_tag(project):
 def prepare_project(task: str = "Any", collaborative_annotation=False, **kwargs):
     return make_project(
         task=task,
-        users=["admin", "approver", "annotator"],
+        users=["admin", "approver", "annotator", "hownetRuleDesigner"],
         roles=[
             settings.ROLE_PROJECT_ADMIN,
             settings.ROLE_ANNOTATION_APPROVER,
             settings.ROLE_ANNOTATOR,
+            settings.ROLE_HOWNET_RULE_DESIGNER
         ],
         collaborative_annotation=collaborative_annotation,
         **kwargs,

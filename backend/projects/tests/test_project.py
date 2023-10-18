@@ -97,7 +97,7 @@ class TestProjectDetailAPI(CRUDMixin):
         cls.project = prepare_project("SequenceLabeling")
         cls.non_member = make_user()
         cls.url = reverse(viewname="project_detail", args=[cls.project.item.id])
-        cls.data = {"description": "lorem", "resourcetype": "SequenceLabelingProject"}
+        cls.data = {"description": "lorem", "resourcetype": "SequenceLabelingProject", "project_state": "HownetRuleCommitted"}
 
     def test_return_project_to_member(self):
         for member in self.project.members:
@@ -110,6 +110,7 @@ class TestProjectDetailAPI(CRUDMixin):
     def test_allows_admin_to_update_project(self):
         response = self.assert_update(self.project.admin, status.HTTP_200_OK)
         self.assertEqual(response.data["description"], self.data["description"])
+        self.assertEqual(response.data["project_state"], self.data["project_state"])
 
     def test_denies_project_staff_to_update_project(self):
         for member in self.project.staffs:

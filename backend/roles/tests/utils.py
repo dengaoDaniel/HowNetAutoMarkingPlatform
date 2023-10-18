@@ -7,3 +7,4 @@ def create_default_roles():
     Role.objects.get_or_create(name=settings.ROLE_PROJECT_ADMIN)
     Role.objects.get_or_create(name=settings.ROLE_ANNOTATOR)
     Role.objects.get_or_create(name=settings.ROLE_ANNOTATION_APPROVER)
+    Role.objects.get_or_create(name=settings.ROLE_HOWNET_RULE_DESIGNER)
