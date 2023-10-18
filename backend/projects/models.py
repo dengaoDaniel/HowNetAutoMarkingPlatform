@@ -21,7 +21,8 @@ class ProjectType(models.TextChoices):
 
 class ProjectState(models.TextChoices):
     HOWNET_RULE_DEVELOPING = "HownetRuleDeveloping"
-    HOWNET_RULE_COMMITTED = "HownetRuleCommitted"    
+    HOWNET_RULE_COMMITTED = "HownetRuleCommitted" 
+    ANNOTATE_MANUALLY = "AnnotateManually"   
     
 
 
@@ -42,7 +43,7 @@ class Project(PolymorphicModel):
     single_class_classification = models.BooleanField(default=False)
     allow_member_to_create_label_type = models.BooleanField(default=False)
     #项目状态：规则设计中、规则已发布
-    project_state = models.CharField(max_length=30, choices=ProjectState.choices)
+    project_state = models.CharField(max_length=50, choices=ProjectState.choices, default=ProjectState.ANNOTATE_MANUALLY)
 
     def add_admin(self):
         admin_role = Role.objects.get(name=settings.ROLE_PROJECT_ADMIN)

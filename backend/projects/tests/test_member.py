@@ -133,6 +133,10 @@ class TestMyRole(CRUDMixin):
         response = self.assert_fetch(self.project.annotator, status.HTTP_200_OK)
         self.assertEqual(response.data["rolename"], settings.ROLE_ANNOTATOR)
 
+    def test_rule_designer(self):
+        response = self.assert_fetch(self.project.hownet_rule_designer, status.HTTP_200_OK)
+        self.assertEqual(response.data["rolename"], settings.ROLE_HOWNET_RULE_DESIGNER)
+
 
 class TestMemberManager(CRUDMixin):
     def test_has_role(self):

@@ -133,6 +133,7 @@ if HEADER_AUTH_USER_NAME and HEADER_AUTH_USER_GROUPS and HEADER_AUTH_ADMIN_GROUP
 ROLE_PROJECT_ADMIN = env("ROLE_PROJECT_ADMIN", "project_admin")
 ROLE_ANNOTATOR = env("ROLE_ANNOTATOR", "annotator")
 ROLE_ANNOTATION_APPROVER = env("ROLE_ANNOTATION_APPROVER", "annotation_approver")
+ROLE_HOWNET_RULE_DESIGNER = env("ROLE_HOWNET_RULE_DESIGNER", "hownet_rule_designer")
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators

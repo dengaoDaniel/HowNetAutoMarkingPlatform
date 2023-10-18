@@ -28,6 +28,10 @@ class ProjectData:
     @property
     def annotator(self):
         return self.members[2]
+    
+    @property
+    def hownet_rule_designer(self):
+        return self.members[3]
 
     @property
     def staffs(self):
@@ -83,7 +87,7 @@ def make_tag(project):
 def prepare_project(task: str = "Any", collaborative_annotation=False, **kwargs):
     return make_project(
         task=task,
-        users=["admin", "approver", "annotator", "hownetRuleDesigner"],
+        users=["admin", "approver", "annotator", "hownet_rule_designer"],
         roles=[
             settings.ROLE_PROJECT_ADMIN,
             settings.ROLE_ANNOTATION_APPROVER,
