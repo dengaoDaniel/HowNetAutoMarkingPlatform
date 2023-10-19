@@ -46,7 +46,7 @@ class TestLabelList:
     def test_allows_project_member_to_bulk_delete_annotation(self):
         self.assert_delete(self.project.admin, status.HTTP_204_NO_CONTENT)
         count = self.model.objects.count()
-        self.assertEqual(count, 2)  # delete only own annotation
+        self.assertEqual(count, 3)  # delete only own annotation
 
 
 class TestCategoryList(TestLabelList, CRUDMixin):
@@ -94,7 +94,7 @@ class TestSharedLabelList:
     def test_allows_project_member_to_fetch_all_annotation(self):
         for member in self.project.members:
             response = self.assert_fetch(member, status.HTTP_200_OK)
-            self.assertEqual(len(response.data), 3)
+            self.assertEqual(len(response.data), 4)
 
     def test_allows_project_member_to_bulk_delete_annotation(self):
         self.assert_delete(self.project.admin, status.HTTP_204_NO_CONTENT)

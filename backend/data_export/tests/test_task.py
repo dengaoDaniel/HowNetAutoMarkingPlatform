@@ -172,6 +172,8 @@ class TestExportSeq2seq(TestExport):
             ],
             self.project.approver.username: [],
             self.project.annotator.username: [],
+            self.project.hownet_rule_designer.username: []
+
         }
         for username, dataset in datasets.items():
             self.assertEqual(dataset, expected_datasets[username])
@@ -447,6 +449,7 @@ class TestExportRelation(TestExport):
             ],
             self.project.annotator.username: [],
             self.project.approver.username: [],
+            self.project.hownet_rule_designer.username: []
         }
         for username, dataset in datasets.items():
             self.assertEqual(dataset, expected_datasets[username])

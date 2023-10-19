@@ -146,6 +146,7 @@ class TestMemberManager(CRUDMixin):
             (settings.ROLE_PROJECT_ADMIN, True),
             (settings.ROLE_ANNOTATION_APPROVER, False),
             (settings.ROLE_ANNOTATOR, False),
+            (settings.ROLE_HOWNET_RULE_DESIGNER, False)
         ]
         for role, expect in expected:
             self.assertEqual(Member.objects.has_role(project.item, admin, role), expect)
