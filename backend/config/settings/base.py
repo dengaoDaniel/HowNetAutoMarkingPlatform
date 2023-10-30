@@ -141,6 +141,7 @@ ROLE_HOWNET_RULE_DESIGNER = env("ROLE_HOWNET_RULE_DESIGNER", "hownet_rule_design
 HOWNET_WORD_SEARCH_URL = ""
 HOWNET_FILE_UPLOAD_URL = ""
 HOWNET_PARSE_SERVICE_URL = ""
+HOWNET_COMMIT_ROLLBACK_URL = ""
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
