@@ -7,6 +7,7 @@ from projects.models import Project
 from projects.serializers import ProjectSerializer
 from django.conf import settings
 import requests
+import json
 
 class SearchHownetKeyWord(views.APIView):
     permission_classes = [IsAuthenticated & (IsProjectAdmin | IsHowNetRoleDesigner)]
@@ -26,7 +27,8 @@ class SearchHownetKeyWord(views.APIView):
         
         if hownet_word_response.status_code != 200:
             return Response(
-                {'error': 'hownet service error'}, 
+                {'result': 'error',
+                 'errorMessage': hownet_word_response.json()['errorMessage']}, 
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
         hownet_word_data = hownet_word_response.json()
@@ -77,11 +79,18 @@ class HownetCommitAndRollBack(views.APIView):
 
             #TODO:调用hownet发布/撤回接口，通知hownet规则和词典生效
             hownet_commit_rollback_api = settings.HOWNET_COMMIT_ROLLBACK_URL
-            hownet_response = requests.get(hownet_commit_rollback_api)
+            headers = {'content-type':'application/json'}
+            data = {
+                'project_id': project_id,
+                'project_name': project.name,
+                'project_state': new_state
+            }
+            hownet_response = requests.post(url=hownet_commit_rollback_api, data=json.dumps(data), headers=headers)
         
             if hownet_response.status_code != 200:
                 return Response(
-                    {'error': 'hownet service error'}, 
+                    {   'result': 'error',
+                        'errorMessage': hownet_response.json()['errorMessage']}, 
                     status=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 )
             return Response({"result": "Hownet service updated successfully."}, status=status.HTTP_200_OK)
