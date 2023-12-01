@@ -138,10 +138,10 @@ ROLE_HOWNET_RULE_DESIGNER = env("ROLE_HOWNET_RULE_DESIGNER", "hownet_rule_design
 
 # Hownet service settings
 #TODO:配置hownet接口服务url
-HOWNET_WORD_SEARCH_URL = ""
-HOWNET_FILE_UPLOAD_URL = ""
+HOWNET_WORD_SEARCH_URL = "http://114.242.71.35:9001/search"
+HOWNET_FILE_UPLOAD_URL = "http://114.242.71.35:9000/upload"
 HOWNET_PARSE_SERVICE_URL = ""
-HOWNET_COMMIT_ROLLBACK_URL = ""
+HOWNET_COMMIT_ROLLBACK_URL = "http://114.242.71.35:9002/commit_and_rollback"
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators

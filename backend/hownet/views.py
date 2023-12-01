@@ -16,7 +16,8 @@ class SearchHownetKeyWord(views.APIView):
         word = request.query_params.get('word')
         if not word:
             return Response(
-                {'error': 'word parameter is required'}, 
+                {'result': 'error',
+                 'errorMessage': 'word parameter is required'}, 
                 status=status.HTTP_400_BAD_REQUEST,
             )        
       
@@ -32,11 +33,8 @@ class SearchHownetKeyWord(views.APIView):
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
         hownet_word_data = hownet_word_response.json()
-        result = {
-            "data": hownet_word_data
-        }
         
-        return Response(result)
+        return Response(hownet_word_data)
     
     
 class HownetFileUpload(views.APIView):
@@ -44,9 +42,9 @@ class HownetFileUpload(views.APIView):
 
     #返回上传hownet文件的服务url
     def get(self, request, *args, **kwargs):
-        hownet_file_ipload_api = settings.HOWNET_FILE_UPLOAD_URL
+        hownet_file_upload_api = settings.HOWNET_FILE_UPLOAD_URL
         result = {
-            "url": hownet_file_ipload_api
+            "url": hownet_file_upload_api
         }
 
         return Response(result)
@@ -62,7 +60,8 @@ class HownetCommitAndRollBack(views.APIView):
         # 确保project_id和project_state都在请求体中
         if not all([project_id, new_state]):
             return Response(
-                {"error": "project_id and project_state parameters are required."}, 
+                {   "result":"error",
+                    "errorMessage": "project_id and project_state parameters are required."}, 
                 status=status.HTTP_400_BAD_REQUEST
             )
 
@@ -93,7 +92,10 @@ class HownetCommitAndRollBack(views.APIView):
                         'errorMessage': hownet_response.json()['errorMessage']}, 
                     status=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 )
-            return Response({"result": "Hownet service updated successfully."}, status=status.HTTP_200_OK)
+            return Response(
+                {"result": "successful",
+                 "message": "Hownet service updated successfully"}, 
+                status=status.HTTP_200_OK)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
