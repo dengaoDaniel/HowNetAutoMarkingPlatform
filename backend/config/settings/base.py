@@ -235,7 +235,8 @@ if DATABASES["default"].get("ENGINE") == "sql_server.pyodbc":
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 SESSION_COOKIE_SECURE = env.bool("SESSION_COOKIE_SECURE", False)
 CSRF_COOKIE_SECURE = env.bool("CSRF_COOKIE_SECURE", False)
-CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", [])
+# 添加默认信任域名，解决联调时跨域请求被拒绝的问题，9880是设置的nginx在服务器上运行的端口号
+CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", ["http://127.0.0.1:9880", "http://114.242.71.34:9880"])
 
 # Allow all host headers
 ALLOWED_HOSTS = ["*"]

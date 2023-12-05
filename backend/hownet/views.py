@@ -74,7 +74,6 @@ class HownetCommitAndRollBack(views.APIView):
         serializer = ProjectSerializer(instance=project, data=serializer_data, partial=True)
 
         if serializer.is_valid():
-            serializer.save()
 
             #TODO:调用hownet发布/撤回接口，通知hownet规则和词典生效
             hownet_commit_rollback_api = settings.HOWNET_COMMIT_ROLLBACK_URL
@@ -92,6 +91,8 @@ class HownetCommitAndRollBack(views.APIView):
                         'errorMessage': hownet_response.json()['errorMessage']}, 
                     status=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 )
+            
+            serializer.save()
             return Response(
                 {"result": "successful",
                  "message": "Hownet service updated successfully"}, 
