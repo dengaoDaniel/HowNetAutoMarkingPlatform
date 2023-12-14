@@ -33,13 +33,13 @@ class TemplateListAPI(APIView):
     permission_classes = [IsAuthenticated & IsProjectAdmin]
 
     def get(self, request: Request, *args, **kwargs):
-        #精炼坊v1.0版本需求，自动标注配置下拉菜单只返回自定义api的选项，写死Custom REST Request并翻译成中文
+        #精炼坊v1.0版本需求，自动标注配置下拉菜单只返回自定义api的选项，写死Custom REST Request
         """
         task_name = request.query_params.get("task_name")
         options = Options.filter_by_task(task_name=task_name)
         option_names = [o.name for o in options]
         """
-        option_names = ['自定义API请求']
+        option_names = ['Custom REST Request']
         return Response(option_names, status=status.HTTP_200_OK)
 
 
@@ -87,9 +87,15 @@ class RestAPIRequestTesting(APIView):
             model = RequestModelFactory.find(model_name)
             schema = model.schema()
             required_fields = ", ".join(schema["required"]) if "required" in schema else ""
+            """
             raise ValidationError(
                 "The attributes does not match the model."
                 "You need to correctly specify the required fields: {}".format(required_fields)
+            )
+            """
+            raise ValidationError(
+                "参数配置与api要求不匹配，"
+                "请正确设置要求的参数: {}".format(required_fields)
             )
 
     def send_request(self, model, example):
