@@ -20,7 +20,7 @@ class SearchHownetKeyWord(views.APIView):
                  'errorMessage': 'word parameter is required'}, 
                 status=status.HTTP_400_BAD_REQUEST,
             )        
-      
+        """
         #hownet查词api在配置文件中统一修改
         hownet_search_api = settings.HOWNET_WORD_SEARCH_URL
         hownet_word_response = requests.get(hownet_search_api, 
@@ -32,8 +32,47 @@ class SearchHownetKeyWord(views.APIView):
                  'errorMessage': hownet_word_response.json()['errorMessage']}, 
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
-        hownet_word_data = hownet_word_response.json()
-        
+        """
+        #由于hownet侧没有解决问题，联调需要返回写死结果
+        #hownet_word_data = hownet_word_response.json()
+        hownet_word_data = {
+                "data": [
+                    {
+                        "NO": "000000026417", 
+                        "W_C": "不惜",        
+                        "G_C": "verb",          
+                        "S_C": "PlusFeeling|正面情感",  
+                        "E_C": "~牺牲业余时间，~付出全部精力，~出卖自己的灵魂",  
+                        "W_E": "do not hesitate to",   
+                        "G_E": "verb",      
+                        "S_E": "PlusFeeling|正面情感",  
+                        "E_E": "",                     
+                        "DEF": "{willing|愿意}",      
+                        "RMK": ""
+                    },
+                    {
+                        "NO": "000000026418", 
+                        "W_C": "苹果",        
+                        "G_C": "noun",          
+                        "S_C": "PlusFeeling|正面情感",  
+                        "E_C": "~水果，~公司名称",  
+                        "W_E": "apple",   
+                        "G_E": "noun",      
+                        "S_E": "PlusFeeling|正面情感",  
+                        "E_E": "",                     
+                        "DEF": "{apple|苹果}",      
+                        "RMK": ""
+                    },
+                ]
+
+            }
+        """
+        hownet_word_data = {
+            "result": "error",
+            "errorMessage": "hownet查词错误",       
+            "message": "该关键词不存在"     
+        }
+        """
         return Response(hownet_word_data)
     
     
@@ -74,8 +113,8 @@ class HownetCommitAndRollBack(views.APIView):
         serializer = ProjectSerializer(instance=project, data=serializer_data, partial=True)
 
         if serializer.is_valid():
-
-            #TODO:调用hownet发布/撤回接口，通知hownet规则和词典生效
+            """
+            #调用hownet发布/撤回接口，通知hownet规则和词典生效
             hownet_commit_rollback_api = settings.HOWNET_COMMIT_ROLLBACK_URL
             headers = {'content-type':'application/json'}
             data = {
@@ -91,7 +130,7 @@ class HownetCommitAndRollBack(views.APIView):
                         'errorMessage': hownet_response.json()['errorMessage']}, 
                     status=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 )
-            
+            """
             serializer.save()
             return Response(
                 {"result": "successful",
