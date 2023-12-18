@@ -31,7 +31,7 @@ class AutoLabelingConfigSerializer(serializers.ModelSerializer):
             schema = model.schema()
             required_fields = ", ".join(schema["required"]) if "required" in schema else ""
             raise serializers.ValidationError(
-                "The attributes does not match the model."
-                "You need to correctly specify the required fields: {}".format(required_fields)
+                "参数配置与api要求不匹配，"
+                "请正确设置要求的参数: {}".format(required_fields)
             )
         return data

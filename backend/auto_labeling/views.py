@@ -83,7 +83,8 @@ class RestAPIRequestTesting(APIView):
         try:
             model = RequestModelFactory.create(model_name, model_attrs)
             return model
-        except Exception:
+        except Exception as e:
+            print(e)
             model = RequestModelFactory.find(model_name)
             schema = model.schema()
             required_fields = ", ".join(schema["required"]) if "required" in schema else ""
